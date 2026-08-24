@@ -52,7 +52,7 @@ export class Task
 
     }
 
-    //softdelet the  task 
+    //restore the  task 
     async restore(id)
     {
         const soft = await fetch(`${baseUrl}/task/${id}`,{

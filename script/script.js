@@ -67,7 +67,7 @@ $("#clear-btn").on('click',function(){
 
     $(document).on('click','.edit-btn',function(){
         const editId = $(this).data('id')
-        console.log(editId)
+        
     })
 
     $(document).on('click','.delete-btn',async function(){
@@ -120,7 +120,7 @@ $("#clear-btn").on('click',function(){
                                 <div class="card-body">
                                     <h6 class="card-title">${task.taskName}</h6>
                                     <div class="btnGroup">
-                                        <button class="btn btn-danger restore-btn" data-id="${task.id}">Restore</button>
+                                        <button class="btn btn-light restore-btn" data-id="${task.id}">Restore</button>
                                     </div>
                                 </div>
                             </div>`
