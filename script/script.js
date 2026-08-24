@@ -82,11 +82,11 @@ $("#clear-btn").on('click',function(){
 
         displayTask.forEach(task => {
            
-           const cardStruc = `<div class="card m-4 p-3 bg-primary text-light">
+           const cardStruc = `<div class="col-5 card p-3 mx-2 my-2 bg-primary text-light">
                                 <div class="card-body">
-                                    <h1 class="card-title">${task.taskName}</h1>
+                                    <h6 class="card-title">${task.taskName}</h6>
                                     <div class="btnGroup">
-                                        <button class="btn btn-warning edit-btn" data-id="${task.id}">Edit the task</button>
+                                        <button class="btn btn-warning edit-btn" data-id="${task.id}">Edit</button>
                                         <button class="btn btn-danger delete-btn" data-id="${task.id}">Delete</button>
                                     </div>
                                 </div>
