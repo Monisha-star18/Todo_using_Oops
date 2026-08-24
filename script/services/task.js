@@ -1,4 +1,4 @@
-import {baseUrl} from './shared.js' 
+import {baseUrl} from '../shared/shared.js' 
 
 
 export class Task

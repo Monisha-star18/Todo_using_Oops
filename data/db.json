@@ -25,28 +25,10 @@
       "id": "dngB-hbtdXo"
     },
     {
-      "taskName": "hello",
-      "isDeleted": false,
-      "dateOfCreation": "2026-08-24T07:20:48.713Z",
-      "id": "hCnjy8rARQI"
-    },
-    {
       "taskName": "hi",
       "isDeleted": false,
-      "dateOfCreation": "2026-08-24T07:21:12.233Z",
-      "id": "RRN_HCn8knA"
-    },
-    {
-      "taskName": "hello",
-      "isDeleted": false,
-      "dateOfCreation": "2026-08-24T07:25:06.705Z",
-      "id": "EefwzbsQzak"
-    },
-    {
-      "taskName": "helo",
-      "isDeleted": false,
-      "dateOfCreation": "2026-08-24T07:25:41.688Z",
-      "id": "5BeyBDk4JrM"
+      "dateOfCreation": "2026-08-24T07:26:27.065Z",
+      "id": "V5EM3fnmbJI"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

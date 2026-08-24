@@ -1,6 +1,6 @@
 
-import {baseUrl} from './shared.js' 
-import {Task} from './task.js'
+import {baseUrl} from './shared/shared.js' 
+import {Task} from './services/task.js'
 
 const taskObject =  new Task(baseUrl)
 
