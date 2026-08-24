@@ -69,9 +69,10 @@ $("#clear-btn").on('click',function(){
         console.log(editId)
     })
 
-    $(document).on('click','.delete-btn',function(){
+    $(document).on('click','.delete-btn',async function(){
         const deleteId = $(this).data('id')
-        
+        await taskObject.softdelect(deleteId)
+        display()
     })
 
     
@@ -82,6 +83,7 @@ $("#clear-btn").on('click',function(){
         try{
              const displayTask = await taskObject.displayCards()
 
+              $(".display-container").empty()
         displayTask.forEach(task => {
            
            const cardStruc = `<div class="col-5 card p-3 mx-2 my-2 bg-primary text-light">

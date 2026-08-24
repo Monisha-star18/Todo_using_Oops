@@ -39,7 +39,13 @@ export class Task
         const soft = await fetch(`${baseUrl}/task/${id}`,{
                     method : 'PATCH',
                     headers : {'Content-type':'application/json'},
-                    body:JSON.stringify(  )
+                    body:JSON.stringify({isDeleted: true})
         })
+
+        if (!soft.ok)
+        {
+            throw new Error ('Cannot diaply the cards')
+        }
+
     }
 }

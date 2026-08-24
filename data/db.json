@@ -1,64 +1,34 @@
 {
   "task": [
     {
-      "taskName": "i want to learn crud",
-      "isDeleted": false,
-      "dateOfCreation": "2026-08-24T05:03:38.642Z",
-      "id": "tGv6JUJc0pg"
+      "taskName": "task 1 : Complete the crud",
+      "isDeleted": true,
+      "dateOfCreation": "2026-08-24T11:59:21.557Z",
+      "id": "OGgPt-ZWZ5s"
     },
     {
-      "taskName": "eat 5 eggs",
+      "taskName": "task 2 : walk atlest 2 km ",
       "isDeleted": false,
-      "dateOfCreation": "2026-08-24T05:03:46.634Z",
-      "id": "WFekUXCvvY8"
+      "dateOfCreation": "2026-08-24T11:59:37.429Z",
+      "id": "O_pLs86fTk8"
     },
     {
-      "taskName": "drink 5 liter of water",
+      "taskName": "task 3 : drink 3 liter water",
       "isDeleted": false,
-      "dateOfCreation": "2026-08-24T05:04:04.218Z",
-      "id": "uiRE6Vfhn0o"
+      "dateOfCreation": "2026-08-24T11:59:52.205Z",
+      "id": "ZFeO1uPZ7rc"
     },
     {
-      "taskName": "climb a hill",
+      "taskName": "task 4 : climb hill",
       "isDeleted": false,
-      "dateOfCreation": "2026-08-24T05:11:24.082Z",
-      "id": "dngB-hbtdXo"
+      "dateOfCreation": "2026-08-24T12:01:24.413Z",
+      "id": "Hpnx7DT3HhU"
     },
     {
-      "taskName": "hi",
-      "isDeleted": false,
-      "dateOfCreation": "2026-08-24T07:26:27.065Z",
-      "id": "V5EM3fnmbJI"
-    },
-    {
-      "taskName": "ello",
-      "isDeleted": false,
-      "dateOfCreation": "2026-08-24T09:50:28.791Z",
-      "id": "G_H0Y1acOqA"
-    },
-    {
-      "taskName": "hi",
-      "isDeleted": false,
-      "dateOfCreation": "2026-08-24T09:51:58.576Z",
-      "id": "NQ345YN9hGw"
-    },
-    {
-      "taskName": "hiiiiii",
-      "isDeleted": false,
-      "dateOfCreation": "2026-08-24T09:52:24.416Z",
-      "id": "y1tM7CEiFas"
-    },
-    {
-      "taskName": "sam",
-      "isDeleted": false,
-      "dateOfCreation": "2026-08-24T10:02:31.648Z",
-      "id": "GojipKEK2jk"
-    },
-    {
-      "taskName": "task1",
-      "isDeleted": false,
-      "dateOfCreation": "2026-08-24T10:33:05.919Z",
-      "id": "CBYzFT5H_dA"
+      "taskName": "task 5 : learn to read books ",
+      "isDeleted": true,
+      "dateOfCreation": "2026-08-24T12:01:55.005Z",
+      "id": "EX8PzoHdPU8"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
