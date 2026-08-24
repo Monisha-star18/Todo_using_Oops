@@ -1,5 +1,8 @@
 
 import {baseUrl} from './shared.js' 
+import {Task} from './task.js'
+
+const taskObject =  new Task(baseUrl)
 
 $("#addTask-btn").on('click',function(){
     addTask()
@@ -16,21 +19,13 @@ async function addTask()
         {
             const CardDetails = cardData()
 
-            const postResult = await fetch(`${baseUrl}/task`,
-                {
-                method : 'POST',
-                headers:{'Content-Type':'application/json',},
-                body : JSON.stringify(CardDetails)
-                })
+           let postResult =  await taskObject.postTask(CardDetails)
 
-            if(postResult.status != 201)
-            {
-                 throw new Error ('cannot post')
-            }
-            else
-            {
-                const responseData = await postResult.json()
-                const taskId = responseData.id 
+            console.log(postResult)
+           
+
+
+                const taskId = postResult.id 
 
                 alert('posted successfully')
                 $(".display-container").prepend
@@ -40,8 +35,6 @@ async function addTask()
 
                 clear()
 
-                
-            }
         }
         catch(err)
         {
@@ -96,3 +89,4 @@ async function addTask()
         const editId = $(this).data('id')
         console.log(editId)
     })
+
