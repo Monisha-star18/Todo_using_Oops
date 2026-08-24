@@ -8,7 +8,7 @@
     },
     {
       "taskName": "task 2 : walk atlest 2 km ",
-      "isDeleted": false,
+      "isDeleted": true,
       "dateOfCreation": "2026-08-24T11:59:37.429Z",
       "id": "O_pLs86fTk8"
     },
@@ -26,7 +26,7 @@
     },
     {
       "taskName": "task 5 : learn to read books ",
-      "isDeleted": true,
+      "isDeleted": false,
       "dateOfCreation": "2026-08-24T12:01:55.005Z",
       "id": "EX8PzoHdPU8"
     }

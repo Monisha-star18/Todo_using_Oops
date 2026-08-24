@@ -21,6 +21,7 @@ $("#clear-btn").on('click',function(){
               await taskObject.postTask(CardDetails)
 
             display()
+            delectedCardsDisplay()
            
 
                 clear()
@@ -73,6 +74,7 @@ $("#clear-btn").on('click',function(){
         const deleteId = $(this).data('id')
         await taskObject.softdelect(deleteId)
         display()
+        delectedCardsDisplay()
     })
 
     
@@ -81,7 +83,7 @@ $("#clear-btn").on('click',function(){
     async function display() {
         
         try{
-             const displayTask = await taskObject.displayCards()
+             const displayTask = await taskObject.displayCards(false)
 
               $(".display-container").empty()
         displayTask.forEach(task => {
@@ -107,4 +109,38 @@ $("#clear-btn").on('click',function(){
        
     }
 
+    async function delectedCardsDisplay() {
+        try{
+             const displayTask = await taskObject.displayCards(true)
+
+              $(".delected-task").empty()
+        displayTask.forEach(task => {
+           
+           const cardStruc = `<div class="col-5 card p-3 mx-2 my-2 bg-primary text-light">
+                                <div class="card-body">
+                                    <h6 class="card-title">${task.taskName}</h6>
+                                    <div class="btnGroup">
+                                        <button class="btn btn-danger restore-btn" data-id="${task.id}">Restore</button>
+                                    </div>
+                                </div>
+                            </div>`
+
+            $(".delected-task").prepend (cardStruc)
+            
+        });
+        }
+        catch(err)
+        {
+            alert(err)
+        }
+    }
+
+    $(document).on('click','.restore-btn',async function(){
+        const restoreId = $(this).data('id')
+        await taskObject.restore(restoreId)
+        display()
+        delectedCardsDisplay()
+    })
+
     display()
+    delectedCardsDisplay()

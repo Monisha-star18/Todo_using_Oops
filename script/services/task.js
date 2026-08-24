@@ -3,8 +3,9 @@ import {baseUrl} from '../shared/shared.js'
 
 export class Task
 {
-
-    async postTask(CardDetails) {
+    //post the task
+    async postTask(CardDetails) 
+    {
         
         const postResult = await fetch(`${baseUrl}/task`,
                         {
@@ -21,10 +22,11 @@ export class Task
         return await postResult.json()
     }
 
-    async displayCards()
+    //disply the task
+    async displayCards(cardType)
     {
 
-        const res = await fetch(`${baseUrl}/task?isDeleted=false`)
+        const res = await fetch(`${baseUrl}/task?isDeleted=${cardType}`)
         
         if (!res.ok)
         {
@@ -34,6 +36,7 @@ export class Task
         return await res.json()
     }
 
+    //softdelet the  task 
     async softdelect(id)
     {
         const soft = await fetch(`${baseUrl}/task/${id}`,{
@@ -48,4 +51,23 @@ export class Task
         }
 
     }
+
+    //softdelet the  task 
+    async restore(id)
+    {
+        const soft = await fetch(`${baseUrl}/task/${id}`,{
+                    method : 'PATCH',
+                    headers : {'Content-type':'application/json'},
+                    body:JSON.stringify({isDeleted: false})
+        })
+
+        if (!soft.ok)
+        {
+            throw new Error ('Cannot diaply the cards')
+        }
+
+    }
+
+
+    
 }
