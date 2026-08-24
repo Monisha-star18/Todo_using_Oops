@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD</title>
+    
+    <link href="./style.css" rel="stylesheet">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+
+</head>
+<body>
+    <div class="container">
+            <h1 class="text-center pt-4 heading">  📝 TODO LIST APP </h1>
+            <div class="todo-container">
+                <div class="top-container ">
+                    <label for="todo-input">Task :  </label>
+                    <input name="todo-input" id="todo-input" type="text" placeholder="Enter Your Taks" minlength="5" maxlength="100" class="rounded ps-3 ms-2">
+                    <button class="btn btn-outline-success ms-4 btn-sm" id="addTask-btn">Add Task</button>
+                    <button class="btn btn-outline-secondary ms-4 btn-sm" id="clear-btn">Clear</button>
+                </div>
+            </div>
+
+            <div class="container mt-4 display-container">
+                
+            </div>
+    </div>
+    
+
+    <!-- jQuery (load first) -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    
+    <!-- Bootstrap JS (load after jQuery) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  
+    <script type="module" src="./script.js"></script>
+</body>
+</html>
