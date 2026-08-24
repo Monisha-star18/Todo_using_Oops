@@ -1,49 +1,28 @@
 {
   "task": [
     {
-      "taskName": "hello",
-      "dateOfCreation": "2026-08-22T06:52:36.123Z",
-      "id": "F2tJHeql8sA"
+      "taskName": "i want to learn crud",
+      "isDeleted": false,
+      "dateOfCreation": "2026-08-24T05:03:38.642Z",
+      "id": "tGv6JUJc0pg"
     },
     {
-      "taskName": "hello",
-      "dateOfCreation": "2026-08-22T06:56:11.107Z",
-      "id": "Etv85zr-E54"
+      "taskName": "eat 5 eggs",
+      "isDeleted": false,
+      "dateOfCreation": "2026-08-24T05:03:46.634Z",
+      "id": "WFekUXCvvY8"
     },
     {
-      "taskName": "hello",
-      "dateOfCreation": "2026-08-22T06:59:54.418Z",
-      "id": "uCVSW11nn2o"
+      "taskName": "drink 5 liter of water",
+      "isDeleted": false,
+      "dateOfCreation": "2026-08-24T05:04:04.218Z",
+      "id": "uiRE6Vfhn0o"
     },
     {
-      "taskName": "hello",
-      "dateOfCreation": "2026-08-22T07:00:35.354Z",
-      "id": "sh7QNnLFSsQ"
-    },
-    {
-      "taskName": "hello",
-      "dateOfCreation": "2026-08-22T07:01:30.187Z",
-      "id": "U0Rbk46yYSU"
-    },
-    {
-      "taskName": "hello",
-      "dateOfCreation": "2026-08-22T07:03:34.715Z",
-      "id": "kiZHEcSoDqM"
-    },
-    {
-      "taskName": "hello",
-      "dateOfCreation": "2026-08-22T07:04:19.138Z",
-      "id": "6ZTlNHO6GhQ"
-    },
-    {
-      "taskName": "hello",
-      "dateOfCreation": "2026-08-22T07:04:37.971Z",
-      "id": "A_qsXJatHE0"
-    },
-    {
-      "taskName": "hello",
-      "dateOfCreation": "2026-08-22T07:05:00.698Z",
-      "id": "DHlFpW870ks"
+      "taskName": "climb a hill",
+      "isDeleted": false,
+      "dateOfCreation": "2026-08-24T05:11:24.082Z",
+      "id": "dngB-hbtdXo"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
