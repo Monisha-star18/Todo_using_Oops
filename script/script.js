@@ -71,8 +71,10 @@ $("#clear-btn").on('click',function(){
 
     $(document).on('click','.delete-btn',function(){
         const deleteId = $(this).data('id')
-        console.log(deleteId)
+        
     })
+
+    
 
 
     async function display() {

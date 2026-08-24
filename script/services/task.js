@@ -24,7 +24,7 @@ export class Task
     async displayCards()
     {
 
-        const res = await fetch(`${baseUrl}/task`)
+        const res = await fetch(`${baseUrl}/task?isDeleted=false`)
         
         if (!res.ok)
         {
@@ -32,5 +32,14 @@ export class Task
         }
 
         return await res.json()
+    }
+
+    async softdelect(id)
+    {
+        const soft = await fetch(`${baseUrl}/task/${id}`,{
+                    method : 'PATCH',
+                    headers : {'Content-type':'application/json'},
+                    body:JSON.stringify(  )
+        })
     }
 }
