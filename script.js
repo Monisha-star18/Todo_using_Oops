@@ -12,8 +12,8 @@ $("#clear-btn").on('click',function(){
     clear()
 })
 
-async function addTask()
-    {
+async function addTask() 
+    { 
          let inputValue = $("#todo-input").val()
         try
         {
@@ -78,7 +78,7 @@ async function addTask()
                                     <h1 class="card-title">${inputValue}</h1>
                                     <div class="btnGroup">
                                         <button class="btn btn-warning edit-btn" data-id="${taskId}">Edit the task</button>
-                                        <button class="btn btn-danger" data-id="${taskId}">Delete</button>
+                                        <button class="btn btn-danger delete-btn" data-id="${taskId}">Delete</button>
                                     </div>
                                 </div>
                             </div>`
@@ -88,5 +88,10 @@ async function addTask()
     $(document).on('click','.edit-btn',function(){
         const editId = $(this).data('id')
         console.log(editId)
+    })
+
+    $(document).on('click','.delete-btn',function(){
+        const deleteId = $(this).data('id')
+        console.log(deleteId)
     })
 
