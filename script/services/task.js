@@ -20,4 +20,17 @@ export class Task
 
         return await postResult.json()
     }
+
+    async displayCards()
+    {
+
+        const res = await fetch(`${baseUrl}/task`)
+        
+        if (!res.ok)
+        {
+            throw new Error ('Cannot diaply the cards')
+        }
+
+        return await res.json()
+    }
 }

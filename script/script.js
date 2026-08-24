@@ -12,26 +12,16 @@ $("#clear-btn").on('click',function(){
     clear()
 })
 
-async function addTask() 
+    async function addTask() 
     { 
-         let inputValue = $("#todo-input").val()
         try
         {
             const CardDetails = cardData()
 
-           let postResult =  await taskObject.postTask(CardDetails)
+              await taskObject.postTask(CardDetails)
 
-            console.log(postResult)
+            display()
            
-
-
-                const taskId = postResult.id 
-
-                alert('posted successfully')
-                $(".display-container").prepend
-                (
-                    taskCardStru(inputValue,taskId)
-                )
 
                 clear()
 
@@ -71,18 +61,7 @@ async function addTask()
         
     }
 
-    function taskCardStru(inputValue,taskId)
-    {
-        return `<div class="card m-4 p-3 bg-primary text-light">
-                                <div class="card-body">
-                                    <h1 class="card-title">${inputValue}</h1>
-                                    <div class="btnGroup">
-                                        <button class="btn btn-warning edit-btn" data-id="${taskId}">Edit the task</button>
-                                        <button class="btn btn-danger delete-btn" data-id="${taskId}">Delete</button>
-                                    </div>
-                                </div>
-                            </div>`
-    }
+    
 
 
     $(document).on('click','.edit-btn',function(){
@@ -95,3 +74,33 @@ async function addTask()
         console.log(deleteId)
     })
 
+
+    async function display() {
+        
+        try{
+             const displayTask = await taskObject.displayCards()
+
+        displayTask.forEach(task => {
+           
+           const cardStruc = `<div class="card m-4 p-3 bg-primary text-light">
+                                <div class="card-body">
+                                    <h1 class="card-title">${task.taskName}</h1>
+                                    <div class="btnGroup">
+                                        <button class="btn btn-warning edit-btn" data-id="${task.id}">Edit the task</button>
+                                        <button class="btn btn-danger delete-btn" data-id="${task.id}">Delete</button>
+                                    </div>
+                                </div>
+                            </div>`
+
+            $(".display-container").prepend (cardStruc)
+            
+        });
+        }
+        catch(err)
+        {
+            alert(err)
+        }
+       
+    }
+
+    display()
