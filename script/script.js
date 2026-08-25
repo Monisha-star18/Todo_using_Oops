@@ -65,10 +65,7 @@ $("#clear-btn").on('click',function(){
     
 
 
-    $(document).on('click','.edit-btn',function(){
-        const editId = $(this).data('id')
-        
-    })
+   
 
     $(document).on('click','.delete-btn',async function(){
         const deleteId = $(this).data('id')
@@ -142,5 +139,32 @@ $("#clear-btn").on('click',function(){
         delectedCardsDisplay()
     })
 
+
+     $(document).on('click','.edit-btn',function(){
+        const editId = $(this).data('id')
+        console.log(editId)
+        
+
+        async function Edit()
+        {
+            try{
+                const edit = await taskObject.displayCardsid(false,editId)
+                const originalTaskName =  edit[0].taskName
+                $("#edit-text").val(originalTaskName)
+                document.getElementById('editModal').style.display = 'block';
+
+            }
+            catch(ERR)
+            {
+                alert(ERR)
+            }
+                
+        }
+        Edit()
+    })
+
+    
+ 
     display()
-    delectedCardsDisplay()
+    delectedCardsDisplay() 
+

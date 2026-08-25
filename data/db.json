@@ -2,7 +2,7 @@
   "task": [
     {
       "taskName": "task 1 : Complete the crud",
-      "isDeleted": true,
+      "isDeleted": false,
       "dateOfCreation": "2026-08-24T11:59:21.557Z",
       "id": "OGgPt-ZWZ5s"
     },

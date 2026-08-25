@@ -23,6 +23,7 @@
                     <button class="btn btn-outline-secondary ms-4 btn-sm" id="clear-btn">Clear</button>
                 </div>
             </div>
+           
 
             <div class="container  mt-4">
                 <div class="row display-container gap-1 justify-content-center">
@@ -35,6 +36,23 @@
                     <div class="row delected-task gap-1 justify-content-center p-2">
                     
                     </div>
+            </div>
+
+            <div class="modal" id="editModal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1>Edit the task</h1>
+                        </div>
+                        <div class="modal-body">
+                            <label for="edit-text">Update task : </lable>
+                            <input name="edit-text" id="edit-text" type="text" minlength="5" maxlength="100">
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-success">Edit</button>
+                        </div>
+                    </div>
+                </div>
             </div>
     </div>
     

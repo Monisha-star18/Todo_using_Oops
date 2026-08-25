@@ -36,6 +36,19 @@ export class Task
         return await res.json()
     }
 
+    async displayCardsid(cardType,id)
+    {
+
+        const result = await fetch(`${baseUrl}/task?isDeleted=${cardType}&id=${id}`)
+        
+        if (!result.ok)
+        {
+            throw new Error ('Cannot diaply the cards')
+        }
+
+        return await result.json()
+    }
+
     //softdelet the  task 
     async softdelect(id)
     {
