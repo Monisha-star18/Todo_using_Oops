@@ -24,49 +24,32 @@
         <div class="container">
             <!-- Header -->
             <header class="text-center pt-4">
-                <div class="header-icon mb-3">
-                    <i class="fas fa-tasks"></i>
-                </div>
                 <h1 class="app-title">📝 TODO LIST APP</h1>
                 <p class="app-subtitle">Stay organized, stay productive</p>
             </header>
 
-            <!-- Add Task Section -->
-            <div class="todo-container">
+                 <!-- Add Task Section -->
                 <div class="top-container">
+                    
+                    <!-- input section  -->
                     <div class="task-input-wrapper">
                         <label for="todo-input" class="task-label">
-                            <i class="fas fa-pencil-alt"></i>
-                            Task :
+                            <i class="fas fa-pencil-alt"></i> Task :
                         </label>
-                        <input 
-                            name="todo-input" 
-                            id="todo-input" 
-                            type="text" 
-                            placeholder="Enter Your Task" 
-                            minlength="5" 
-                            maxlength="100" 
-                            class="task-input-field"
-                        />
-                        <button class="btn btn-add" id="addTask-btn">
-                            <i class="fas fa-plus me-2"></i>Add Task
-                        </button>
-                        <button class="btn btn-clear" id="clear-btn">
-                            <i class="fas fa-times"></i>
-                        </button>
+                        <input  name="todo-input"  id="todo-input"  type="text" 
+                            placeholder="Enter Your Task"  minlength="5" maxlength="100" class="task-input-field rounded"/>
+                        
+                        <!-- add and clear btn -->
+                        <button class="btn btn-success btn-add" id="addTask-btn"> <i class="fas fa-plus me-2"></i>Add Task </button>
+                        <button class="btn btn-dark btn-clear" id="clear-btn"><i class="fas fa-times"></i></button>
                     </div>
+
                 </div>
-            </div>
+            
 
             <!-- Active Tasks -->
             <div class="container mt-4">
-                <div class="section-header">
-                    <h2 class="section-title">
-                        <i class="fas fa-list-check text-success me-2"></i>
-                        Active Tasks
-                        <span class="badge bg-success ms-2" id="active-count">0</span>
-                    </h2>
-                </div>
+                
                 <div class="row display-container gap-1 justify-content-center">
                     <!-- Tasks rendered by script -->
                 </div>
@@ -78,7 +61,6 @@
                     <h2 class="section-title text-light">
                         <i class="fas fa-trash-alt text-danger me-2"></i>
                         Deleted Tasks
-                        <span class="badge bg-danger ms-2" id="deleted-count">0</span>
                     </h2>
                 </div>
                 <div class="row delected-task gap-1 justify-content-center p-2">

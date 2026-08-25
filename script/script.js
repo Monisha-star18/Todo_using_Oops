@@ -94,10 +94,10 @@ import {Task} from './services/task.js'
             displayTask.forEach(task => 
             {
            
-                const cardStruc = `<div class="col-5 card p-3 mx-2 my-2 bg-primary text-light">
+                const cardStruc = `<div class="col-5 card p-3 mx-2 my-2  rounded-5">
                                         <div class="card-body">
                                             <h6 class="card-title">${task.taskName}</h6>
-                                            <p>created date : ${task.dateOfCreation} </p>
+                                            <p> 📅 created date : ${new Date(task.dateOfCreation).toLocaleDateString()} </p>
                                             <div class="btnGroup">
                                                 <button class="btn btn-warning edit-btn" data-id="${task.id}">Edit</button>
                                                 <button class="btn btn-danger delete-btn" data-id="${task.id}">Delete</button>
@@ -127,7 +127,7 @@ import {Task} from './services/task.js'
             displayTask.forEach(task => 
             {
            
-                const cardStruc = `<div class="col-5 card p-3 mx-2 my-2 bg-primary text-light">
+                const cardStruc = `<div class="col-5 card p-3 mx-2 my-2  text-light rounded-5">
                                         <div class="card-body">
                                             <h6 class="card-title">${task.taskName}</h6>
                                             <div class="btnGroup">
