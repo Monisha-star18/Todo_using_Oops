@@ -1,16 +1,18 @@
 {
   "task": [
     {
-      "taskName": "task 1 : Complete the crud",
+      "taskName": "task 1 : Complete the ",
       "isDeleted": false,
       "dateOfCreation": "2026-08-24T11:59:21.557Z",
-      "id": "OGgPt-ZWZ5s"
+      "id": "OGgPt-ZWZ5s",
+      "updatedDate": "2026-08-25T09:59:11.763Z"
     },
     {
-      "taskName": "task 2 : walk atlest 2 km ",
+      "taskName": "task 2 : walk atlest km ",
       "isDeleted": false,
       "dateOfCreation": "2026-08-24T11:59:37.429Z",
-      "id": "O_pLs86fTk8"
+      "id": "O_pLs86fTk8",
+      "updatedDate": "2026-08-25T10:34:28.545Z"
     },
     {
       "taskName": "task 3 : drink 3 liter water",
@@ -20,7 +22,7 @@
     },
     {
       "taskName": "task 4 : climb hill and die",
-      "isDeleted": true,
+      "isDeleted": false,
       "dateOfCreation": "2026-08-24T12:01:24.413Z",
       "id": "Hpnx7DT3HhU"
     },
@@ -36,6 +38,12 @@
       "dateOfCreation": "2026-08-24T12:24:58.805Z",
       "id": "mKJW7rmGKck",
       "updatedDate": "2026-08-25T09:23:29.460Z"
+    },
+    {
+      "taskName": "drink water",
+      "isDeleted": false,
+      "dateOfCreation": "2026-08-25T10:53:33.835Z",
+      "id": "fNSLq0l5x4g"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

@@ -1,20 +1,528 @@
-#todo-input
-{
-    width: 730px;
-    height: 50px;
+/* ===== CSS Variables ===== */
+:root {
+    --primary-color: #6C63FF;
+    --primary-dark: #5A52D5;
+    --primary-light: #8B83FF;
+    --secondary-color: #FF6584;
+    --success-color: #2ECC71;
+    --warning-color: #F39C12;
+    --danger-color: #E74C3C;
+    --dark-color: #2C3E50;
+    --light-bg: #F8F9FE;
+    --card-shadow: 0 10px 30px rgba(108, 99, 255, 0.1);
+    --card-hover-shadow: 0 15px 40px rgba(108, 99, 255, 0.2);
+    --border-radius: 16px;
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.top-container
-{
+/* ===== Global Reset ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* ===== App Wrapper ===== */
+.app-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border-radius: 24px;
+    padding: 30px 40px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* ===== Header ===== */
+.header-icon {
+    font-size: 3rem;
+    color: var(--primary-color);
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+}
+
+.app-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: -1px;
+    margin-bottom: 5px;
+}
+
+.app-subtitle {
+    color: #6C7A89;
+    font-size: 1rem;
+    font-weight: 300;
+    margin-top: -5px;
+}
+
+/* ===== Top Container - Task Input ===== */
+.top-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 70px;
-
+    margin-top: 30px;
+    margin-bottom: 20px;
+    background: var(--light-bg);
+    border-radius: var(--border-radius);
+    padding: 20px 25px;
+    border: 1px solid rgba(108, 99, 255, 0.1);
 }
 
-.card-body
-{
+.task-input-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+.task-label {
+    font-weight: 600;
+    color: var(--dark-color);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 1rem;
+    white-space: nowrap;
+}
+
+.task-label i {
+    color: var(--primary-color);
+}
+
+.task-input-field {
+    flex: 1;
+    min-width: 200px;
+    padding: 12px 20px;
+    border: 2px solid #E8ECF1;
+    border-radius: 12px;
+    font-size: 1rem;
+    transition: var(--transition);
+    background: white;
+    outline: none;
+    font-family: 'Inter', sans-serif;
+}
+
+.task-input-field:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 4px rgba(108, 99, 255, 0.1);
+}
+
+.task-input-field::placeholder {
+    color: #B0BEC5;
+}
+
+/* ===== Buttons ===== */
+.btn {
+    border-radius: 12px;
+    font-weight: 600;
+    padding: 10px 24px;
+    transition: var(--transition);
+    font-family: 'Inter', sans-serif;
+}
+
+.btn-add {
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    white-space: nowrap;
+}
+
+.btn-add:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(108, 99, 255, 0.3);
+    color: white;
+}
+
+.btn-clear {
+    background: white;
+    color: #95A5A6;
+    border: 2px solid #E8ECF1;
+    padding: 12px 18px;
+}
+
+.btn-clear:hover {
+    background: #F0F2F5;
+    border-color: #D5D8DC;
+    color: #7F8C8D;
+}
+
+/* ===== Section Headers ===== */
+.section-header {
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #E8ECF1;
     display: flex;
     justify-content: space-between;
+    align-items: center;
+}
+
+.section-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--dark-color);
+    margin: 0;
+}
+
+.badge {
+    font-size: 0.75rem;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-weight: 600;
+}
+
+/* ===== Display Container ===== */
+.display-container {
+    padding: 5px 0;
+}
+
+/* ===== Task Cards ===== */
+.card {
+    border: none !important;
+    border-radius: var(--border-radius) !important;
+    transition: var(--transition);
+    box-shadow: var(--card-shadow);
+    overflow: hidden;
+    background: white !important;
+    color: var(--dark-color) !important;
+    width: 100%;
+    animation: slideIn 0.3s ease-out;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--card-hover-shadow);
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 20px 25px !important;
+}
+
+.card-title {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--dark-color);
+    margin: 0;
+    word-break: break-word;
+}
+
+.card p {
+    font-size: 0.8rem;
+    color: #95A5A6;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.card p::before {
+    content: "📅";
+    font-size: 0.9rem;
+}
+
+.btnGroup {
+    display: flex;
+    gap: 10px;
+    margin-top: 5px;
+}
+
+.btnGroup .btn {
+    flex: 1;
+    padding: 8px 15px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border-radius: 10px;
+    transition: var(--transition);
+    border: none;
+}
+
+/* Edit Button */
+.btn-warning {
+    background: #F0F2FF !important;
+    color: var(--primary-color) !important;
+}
+
+.btn-warning:hover {
+    background: var(--primary-color) !important;
+    color: white !important;
+    transform: translateY(-2px);
+}
+
+/* Delete Button */
+.btn-danger {
+    background: #FFF0F0 !important;
+    color: var(--danger-color) !important;
+}
+
+.btn-danger:hover {
+    background: var(--danger-color) !important;
+    color: white !important;
+    transform: translateY(-2px);
+}
+
+/* Restore Button */
+.btn-light {
+    background: #E8F5E9 !important;
+    color: var(--success-color) !important;
+    border: none !important;
+}
+
+.btn-light:hover {
+    background: var(--success-color) !important;
+    color: white !important;
+    transform: translateY(-2px);
+}
+
+/* ===== Deleted Section ===== */
+.deleted-section {
+    background: linear-gradient(135deg, #2C3E50, #34495E);
+    border-radius: var(--border-radius);
+    padding: 20px 25px !important;
+    margin-top: 30px;
+}
+
+.deleted-section .section-title {
+    color: white !important;
+}
+
+.deleted-section .card {
+    background: rgba(255, 255, 255, 0.05) !important;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.deleted-section .card-title {
+    color: white !important;
+}
+
+.deleted-section .card p {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.deleted-section .card p::before {
+    content: "🗑️";
+}
+
+.deleted-section .btn-light {
+    background: rgba(255, 255, 255, 0.1) !important;
+    color: white !important;
+}
+
+.deleted-section .btn-light:hover {
+    background: var(--success-color) !important;
+    color: white !important;
+}
+
+/* ===== Edit Modal ===== */
+.modal-content {
+    border: none !important;
+    border-radius: var(--border-radius) !important;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.modal-header {
+    padding: 25px 30px 15px 30px;
+}
+
+.modal-title {
+    font-weight: 700;
+    font-size: 1.3rem;
+}
+
+.modal-body {
+    padding: 15px 30px;
+}
+
+.modal-footer {
+    padding: 15px 30px 25px 30px;
+}
+
+#edit-text {
+    border-radius: 12px;
+    border: 2px solid #E8ECF1;
+    padding: 12px 20px;
+    font-size: 1rem;
+    transition: var(--transition);
+}
+
+#edit-text:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 4px rgba(108, 99, 255, 0.1);
+}
+
+/* ===== Animations ===== */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* ===== Responsive Design ===== */
+@media (max-width: 992px) {
+    .app-wrapper {
+        padding: 20px;
+    }
+    
+    .app-title {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+    
+    .app-wrapper {
+        padding: 15px;
+        border-radius: 16px;
+    }
+    
+    .app-title {
+        font-size: 1.6rem;
+    }
+    
+    .top-container {
+        padding: 15px;
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .task-input-wrapper {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .task-label {
+        font-size: 0.9rem;
+    }
+    
+    .task-input-field {
+        width: 100%;
+        min-width: unset;
+        padding: 10px 15px;
+        font-size: 0.95rem;
+    }
+    
+    .btn-add {
+        width: 100%;
+        justify-content: center;
+        padding: 10px 20px;
+    }
+    
+    .btn-clear {
+        width: 100%;
+        justify-content: center;
+        padding: 10px 20px;
+    }
+    
+    .card-body {
+        padding: 15px !important;
+    }
+    
+    .btnGroup .btn {
+        font-size: 0.75rem;
+        padding: 6px 10px;
+    }
+    
+    .card-title {
+        font-size: 0.95rem;
+    }
+    
+    .deleted-section {
+        padding: 15px !important;
+    }
+    
+    .section-title {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .app-title {
+        font-size: 1.4rem;
+    }
+    
+    .header-icon {
+        font-size: 2.5rem;
+    }
+    
+    .app-subtitle {
+        font-size: 0.85rem;
+    }
+    
+    .display-container .col-5 {
+        width: 100%;
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    
+    .modal-dialog {
+        margin: 10px;
+    }
+}
+
+/* ===== Scrollbar Styling ===== */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #F1F1F1;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-dark);
+}
+
+/* ===== Empty State for Cards ===== */
+.display-container:empty::after {
+    content: "✨ No tasks yet. Add one above!";
+    display: block;
+    text-align: center;
+    padding: 30px;
+    color: #95A5A6;
+    font-size: 1.1rem;
+    width: 100%;
+}
+
+.delected-task:empty::after {
+    content: "🗑️ No deleted tasks";
+    display: block;
+    text-align: center;
+    padding: 20px;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 1rem;
+    width: 100%;
 }

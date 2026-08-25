@@ -2,18 +2,18 @@
 import {baseUrl} from './shared/shared.js' 
 import {Task} from './services/task.js'
 
-// the object of the task class 
-const taskObject =  new Task(baseUrl)
+    // the object of the task class 
+    const taskObject =  new Task(baseUrl)
 
-//on click on the add task it calls the add task 
-$("#addTask-btn").on('click',function(){
-    addTask()
-})  
+    //on click on the add task it calls the add task 
+    $("#addTask-btn").on('click',function(){
+        addTask()
+    })  
 
-// on click on the clear it calls the clear function 
-$("#clear-btn").on('click',function(){
-    clear()
-})
+    // on click on the clear it calls the clear function 
+    $("#clear-btn").on('click',function(){
+        clear()
+    })
 
     // function to create a new task and then post in the db
     async function addTask() 
@@ -97,6 +97,7 @@ $("#clear-btn").on('click',function(){
                 const cardStruc = `<div class="col-5 card p-3 mx-2 my-2 bg-primary text-light">
                                         <div class="card-body">
                                             <h6 class="card-title">${task.taskName}</h6>
+                                            <p>created date : ${task.dateOfCreation} </p>
                                             <div class="btnGroup">
                                                 <button class="btn btn-warning edit-btn" data-id="${task.id}">Edit</button>
                                                 <button class="btn btn-danger delete-btn" data-id="${task.id}">Delete</button>
@@ -193,8 +194,9 @@ $("#clear-btn").on('click',function(){
             //post the data updated 
             await taskObject.edit(editId,bodyContent)
 
-            //the edit modal is used 
-            document.getElementById('editModal').style.display = 'none';
+            // Hide modal using Bootstrap
+            const modal = bootstrap.Modal.getInstance(document.getElementById('editModal'));
+            modal.hide();
 
             //refersh and then task cards
             display()
@@ -217,7 +219,9 @@ $("#clear-btn").on('click',function(){
                 $("#edit-text").val(originalTaskName)
 
                 //display the edit modal 
-                document.getElementById('editModal').style.display = 'block';
+                const modal = new bootstrap.Modal(document.getElementById('editModal'));
+                modal.show();
+
 
                 // return the task name do it can be checked in the time of posting
                 return originalTaskName

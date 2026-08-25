@@ -1,61 +1,128 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CRUD</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TaskMaster - Todo List</title>
     
-    <link href="./style/style.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
     
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    
+    <!-- Custom Styles -->
+    <link href="./style/style.css" rel="stylesheet" />
 </head>
 <body>
-    <div class="container">
-            <h1 class="text-center pt-4 heading">  📝 TODO LIST APP </h1>
+    <div class="app-wrapper">
+        <div class="container">
+            <!-- Header -->
+            <header class="text-center pt-4">
+                <div class="header-icon mb-3">
+                    <i class="fas fa-tasks"></i>
+                </div>
+                <h1 class="app-title">📝 TODO LIST APP</h1>
+                <p class="app-subtitle">Stay organized, stay productive</p>
+            </header>
+
+            <!-- Add Task Section -->
             <div class="todo-container">
-                <div class="top-container ">
-                    <label for="todo-input">Task :  </label>
-                    <input name="todo-input" id="todo-input" type="text" placeholder="Enter Your Taks" minlength="5" maxlength="100" class="rounded ps-3 ms-2">
-                    <button class="btn btn-outline-success ms-4 btn-sm" id="addTask-btn">Add Task</button>
-                    <button class="btn btn-outline-secondary ms-4 btn-sm" id="clear-btn">Clear</button>
+                <div class="top-container">
+                    <div class="task-input-wrapper">
+                        <label for="todo-input" class="task-label">
+                            <i class="fas fa-pencil-alt"></i>
+                            Task :
+                        </label>
+                        <input 
+                            name="todo-input" 
+                            id="todo-input" 
+                            type="text" 
+                            placeholder="Enter Your Task" 
+                            minlength="5" 
+                            maxlength="100" 
+                            class="task-input-field"
+                        />
+                        <button class="btn btn-add" id="addTask-btn">
+                            <i class="fas fa-plus me-2"></i>Add Task
+                        </button>
+                        <button class="btn btn-clear" id="clear-btn">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
                 </div>
             </div>
-           
 
-            <div class="container  mt-4">
+            <!-- Active Tasks -->
+            <div class="container mt-4">
+                <div class="section-header">
+                    <h2 class="section-title">
+                        <i class="fas fa-list-check text-success me-2"></i>
+                        Active Tasks
+                        <span class="badge bg-success ms-2" id="active-count">0</span>
+                    </h2>
+                </div>
                 <div class="row display-container gap-1 justify-content-center">
-                        
+                    <!-- Tasks rendered by script -->
                 </div>
             </div>
 
-            <div class="container mt-5  bg-danger p-2 rounded">
-                    <h1 class="text-light">Deleted task</h1>
-                    <div class="row delected-task gap-1 justify-content-center p-2">
-                    
-                    </div>
-            </div>
-
-            <div class="modal" id="editModal">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h1>Edit the task</h1>
-                        </div>
-                        <div class="modal-body">
-                            <label for="edit-text">Update task : </lable>
-                            <input name="edit-text" id="edit-text" type="text" minlength="5" maxlength="100">
-                        </div>
-                        <div class="modal-footer">
-                            <button class="btn btn-success editModal-btn">Edit</button>
-                        </div>
-                    </div>
+            <!-- Deleted Tasks -->
+            <div class="container mt-5 deleted-section">
+                <div class="section-header">
+                    <h2 class="section-title text-light">
+                        <i class="fas fa-trash-alt text-danger me-2"></i>
+                        Deleted Tasks
+                        <span class="badge bg-danger ms-2" id="deleted-count">0</span>
+                    </h2>
+                </div>
+                <div class="row delected-task gap-1 justify-content-center p-2">
+                    <!-- Deleted tasks rendered by script -->
                 </div>
             </div>
+
+           <!-- Edit Modal - Using Bootstrap's modal system -->
+<div class="modal fade" id="editModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header border-0">
+                <h5 class="modal-title">
+                    <i class="fas fa-edit text-primary me-2"></i>
+                    Edit the task
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label for="edit-text" class="form-label fw-semibold">
+                        <i class="fas fa-pen me-2"></i>Update task :
+                    </label>
+                    <input 
+                        name="edit-text" 
+                        id="edit-text" 
+                        type="text" 
+                        minlength="5" 
+                        maxlength="100"
+                        class="form-control form-control-lg"
+                    />
+                </div>
+            </div>
+            <div class="modal-footer border-0">
+                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+                <button class="btn btn-success editModal-btn">
+                    <i class="fas fa-save me-2"></i>Edit
+                </button>
+            </div>
+        </div>
     </div>
-    
+</div>
+        </div>
+    </div>
 
     <!-- jQuery (load first) -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
