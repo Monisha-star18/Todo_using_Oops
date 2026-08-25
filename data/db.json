@@ -2,7 +2,7 @@
   "task": [
     {
       "taskName": "task 1 : Complete the ",
-      "isDeleted": false,
+      "isDeleted": true,
       "dateOfCreation": "2026-08-24T11:59:21.557Z",
       "id": "OGgPt-ZWZ5s",
       "updatedDate": "2026-08-25T09:59:11.763Z"
@@ -16,7 +16,7 @@
     },
     {
       "taskName": "task 3 : drink 3 liter water",
-      "isDeleted": true,
+      "isDeleted": false,
       "dateOfCreation": "2026-08-24T11:59:52.205Z",
       "id": "ZFeO1uPZ7rc"
     },
@@ -28,7 +28,7 @@
     },
     {
       "taskName": "task 5 : learn to read books ",
-      "isDeleted": false,
+      "isDeleted": true,
       "dateOfCreation": "2026-08-24T12:01:55.005Z",
       "id": "EX8PzoHdPU8"
     },
@@ -40,10 +40,11 @@
       "updatedDate": "2026-08-25T09:23:29.460Z"
     },
     {
-      "taskName": "drink water",
+      "taskName": "drink water atlest 1 liter",
       "isDeleted": false,
       "dateOfCreation": "2026-08-25T10:53:33.835Z",
-      "id": "fNSLq0l5x4g"
+      "id": "fNSLq0l5x4g",
+      "updatedDate": "2026-08-25T12:04:24.002Z"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

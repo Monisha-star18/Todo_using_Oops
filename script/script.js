@@ -172,39 +172,52 @@ import {Task} from './services/task.js'
     })
 
     // when a edit button on the modal is clicked button is clicked
-    $(document).on('click','.editModal-btn',async function()
+    $(document).on('click', '.editModal-btn', async function()
     {
-        // the task name edit is store 
-        const editedTaskName =  $("#edit-text").val()
-
-        //the original task name is stored 
-        const originalEdit = await Edit(editId)
-
-        // check whether anything is chnaged to get stored 
-        if(originalEdit === editedTaskName)
+        try
         {
-            alert("edit the task name")
-        }
+            const editedTaskName = $("#edit-text").val().trim();
 
-        else
-        {
-            // make the body object to post as its edited 
-            const bodyContent = { taskName : editedTaskName , updatedDate : new Date()}
-            
-            //post the data updated 
-            await taskObject.edit(editId,bodyContent)
+            if(editedTaskName === "")
+            {
+                alert("Task name cannot be empty");
+                return;
+            }
 
-            // Hide modal using Bootstrap
-            const modal = bootstrap.Modal.getInstance(document.getElementById('editModal'));
+            if(editedTaskName.length < 5)
+            {
+                alert("Task name must contain at least 5 characters");
+                return;
+            }
+
+            if(originalTaskName === editedTaskName)
+            {
+                alert("Please edit the task name");
+                return;
+            }
+
+            const bodyContent = {
+                taskName: editedTaskName,
+                updatedDate: new Date()
+            };
+
+            await taskObject.edit(editId, bodyContent);
+
+            const modalElement = document.getElementById('editModal');
+            const modal = bootstrap.Modal.getInstance(modalElement);
+
             modal.hide();
 
-            //refersh and then task cards
-            display()
-
+            display();
         }
-    })
- 
-   
+        catch(err)
+        {
+            alert(err);
+        }
+    });
+
+   let originalTaskName = ""
+
     async function Edit(editId)
         {
             try
@@ -213,13 +226,14 @@ import {Task} from './services/task.js'
                 const edit = await taskObject.displayCardsid(false,editId)
 
                 //the particular task name is extracted 
-                const originalTaskName =  edit[0].taskName
+                 originalTaskName =  edit[0].taskName
 
                 //the task name extracted is been filled in the edit modal 
                 $("#edit-text").val(originalTaskName)
 
                 //display the edit modal 
-                const modal = new bootstrap.Modal(document.getElementById('editModal'));
+                const modalElement = document.getElementById("editModal");
+                const modal = bootstrap.Modal.getOrCreateInstance(modalElement);
                 modal.show();
 
 
