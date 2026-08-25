@@ -19,8 +19,8 @@
       "id": "ZFeO1uPZ7rc"
     },
     {
-      "taskName": "task 4 : climb hill",
-      "isDeleted": false,
+      "taskName": "task 4 : climb hill and die",
+      "isDeleted": true,
       "dateOfCreation": "2026-08-24T12:01:24.413Z",
       "id": "Hpnx7DT3HhU"
     },
@@ -31,7 +31,7 @@
       "id": "EX8PzoHdPU8"
     },
     {
-      "taskName": "i want to take 20 gram protien",
+      "taskName": "i want to take 20 am protien",
       "isDeleted": false,
       "dateOfCreation": "2026-08-24T12:24:58.805Z",
       "id": "mKJW7rmGKck"

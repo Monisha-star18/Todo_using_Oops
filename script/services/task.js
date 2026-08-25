@@ -81,6 +81,21 @@ export class Task
 
     }
 
+    async edit(id,bodyContent)
+    {
+        const soft = await fetch(`${baseUrl}/task/${id}`,{
+                    method : 'PATCH',
+                    headers : {'Content-type':'application/json'},
+                    body:JSON.stringify(bodyContent)
+        })
+
+        if (!soft.ok)
+        {
+            throw new Error ('Cannot edit the cards')
+        }
+
+    }
+
 
     
 }
