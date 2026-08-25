@@ -8,13 +8,13 @@
     },
     {
       "taskName": "task 2 : walk atlest 2 km ",
-      "isDeleted": true,
+      "isDeleted": false,
       "dateOfCreation": "2026-08-24T11:59:37.429Z",
       "id": "O_pLs86fTk8"
     },
     {
       "taskName": "task 3 : drink 3 liter water",
-      "isDeleted": false,
+      "isDeleted": true,
       "dateOfCreation": "2026-08-24T11:59:52.205Z",
       "id": "ZFeO1uPZ7rc"
     },

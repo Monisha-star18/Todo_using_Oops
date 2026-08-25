@@ -70,8 +70,10 @@ $("#clear-btn").on('click',function(){
         //the id of specific task is been stored 
         const deleteId = $(this).data('id')
         
-        //function for softdelecte is called
-        await taskObject.softdelect(deleteId)
+        const deleteBody = { isDeleted: true }
+
+        //function for edit is called
+        await taskObject.edit(deleteId ,deleteBody)
 
         //the functionality to refersh and show the currect cards and the show deleted cards 
         display()
@@ -146,8 +148,10 @@ $("#clear-btn").on('click',function(){
         //the id of specific task is been stored 
         const restoreId = $(this).data('id')
         
-        //function for restore is called
-        await taskObject.restore(restoreId)
+        const restoreBody = { isDeleted: false}
+
+        //function for edit is called
+        await taskObject.edit(restoreId , restoreBody)
 
         //the functionality to refersh and show the currect cards and the show deleted cards 
         display()

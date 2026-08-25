@@ -36,6 +36,7 @@ export class Task
         return await res.json()
     }
 
+    //get particular task with id 
     async displayCardsid(cardType,id)
     {
 
@@ -49,38 +50,8 @@ export class Task
         return await result.json()
     }
 
-    //softdelet the  task 
-    async softdelect(id)
-    {
-        const soft = await fetch(`${baseUrl}/task/${id}`,{
-                    method : 'PATCH',
-                    headers : {'Content-type':'application/json'},
-                    body:JSON.stringify({isDeleted: true})
-        })
-
-        if (!soft.ok)
-        {
-            throw new Error ('Cannot diaply the cards')
-        }
-
-    }
-
-    //restore the  task 
-    async restore(id)
-    {
-        const soft = await fetch(`${baseUrl}/task/${id}`,{
-                    method : 'PATCH',
-                    headers : {'Content-type':'application/json'},
-                    body:JSON.stringify({isDeleted: false})
-        })
-
-        if (!soft.ok)
-        {
-            throw new Error ('Cannot diaply the cards')
-        }
-
-    }
-
+    
+    //update the cards  either task edit or softdelecte or restore
     async edit(id,bodyContent)
     {
         const soft = await fetch(`${baseUrl}/task/${id}`,{
@@ -95,7 +66,5 @@ export class Task
         }
 
     }
-
-
     
 }
