@@ -18,98 +18,211 @@
     
     <!-- Custom Styles -->
     <link href="./style/style.css" rel="stylesheet" />
+    <link href="./style/landing.css" rel="stylesheet" />
 </head>
 <body>
     <div class="app-wrapper">
         <div class="container">
-            <!-- Header -->
-            <header class="text-center pt-4">
-                <h1 class="app-title">📝 TODO LIST APP</h1>
-                <p class="app-subtitle">Stay organized, stay productive</p>
-            </header>
+            
+            <!-- ==================== LANDING PAGE ==================== -->
+            <div id="landingPage">
+                <div class="row min-vh-100 align-items-center justify-content-center">
+                    <div class="col-lg-8 text-center">
+                        <div class="landing-content">
+                            <h1 class="landing-title">TaskMaster</h1>
+                            <p class="landing-subtitle">Organize your tasks, boost your productivity</p>
+                            
+                            <div class="landing-features">
+                                <div class="row g-4">
+                                    <div class="col-md-4">
+                                        <div class="feature-card">
+                                            <i class="fas fa-plus-circle"></i>
+                                            <h5>Create Tasks</h5>
+                                            <p>Add and manage your daily tasks easily</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="feature-card">
+                                            <i class="fas fa-edit"></i>
+                                            <h5>Edit & Update</h5>
+                                            <p>Modify tasks whenever you need</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="feature-card">
+                                            <i class="fas fa-trash-restore"></i>
+                                            <h5>Restore Deleted</h5>
+                                            <p>Recover tasks from the trash</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
-                 <!-- Add Task Section -->
+                            <div class="landing-buttons">
+                                <button class="landing-btn landing-btn-primary" id="loginBtn-landing">
+                                    <i class="fas fa-sign-in-alt me-2"></i>Login
+                                </button>
+                                <button class="landing-btn landing-btn-outline" id="signupBtn-landing">
+                                    <i class="fas fa-user-plus me-2"></i>Sign Up
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ==================== AUTH PAGE ==================== -->
+            <div id="authPage" style="display: none;">
+                <div class="row min-vh-100 align-items-center justify-content-center">
+                    <div class="col-lg-5 col-md-8">
+                        <div class="auth-card">
+                            <div class="auth-header">
+                                <div class="auth-icon">
+                                    <i class="fas fa-user-circle"></i>
+                                </div>
+                                <h2 id="authTitle">Create Account</h2>
+                                <p id="authSubtitle" class="text-muted">Start managing your tasks today</p>
+                            </div>
+                            
+                            <form id="authForm">
+                                <div id="authError" class="alert alert-danger" style="display: none;"></div>
+                                
+                                <div id="nameGroup">
+                                    <div class="mb-3">
+                                        <label class="form-label">
+                                            <i class="fas fa-user me-2"></i>Username
+                                        </label>
+                                        <input type="text" id="username" class="form-control form-control-lg" 
+                                               placeholder="Enter username" minlength="3" />
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label">
+                                        <i class="fas fa-envelope me-2"></i>Email
+                                    </label>
+                                    <input type="email" id="email" class="form-control form-control-lg" 
+                                           placeholder="Enter email" required />
+                                </div>
+
+                                <div class="mb-4">
+                                    <label class="form-label">
+                                        <i class="fas fa-lock me-2"></i>Password
+                                    </label>
+                                    <input type="password" id="password" class="form-control form-control-lg" 
+                                           placeholder="Enter password" minlength="6" required />
+                                    <small class="text-muted" id="passwordHint">Min 6 characters</small>
+                                </div>
+
+                                <button type="submit" class="btn btn-primary btn-lg w-100" id="submitBtn">
+                                    <i class="fas fa-arrow-right me-2"></i>Sign Up
+                                </button>
+
+                                <div class="text-center mt-3" id="toggleAuthText">
+                                    Already have an account? <a href="#" id="toggleAuth">Login</a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ==================== APP PAGE ==================== -->
+            <div id="appPage" style="display: none;">
+                <!-- Header -->
+                <header class="text-center pt-4">
+                    <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+                        <h1 class="app-title">📝 TODO LIST</h1>
+                        <div>
+                            <span class="me-3 text-muted" id="userDisplay">
+                                <i class="fas fa-user-circle"></i> 
+                                <span id="currentUsername"></span>
+                            </span>
+                            <button class="btn btn-outline-danger btn-sm" id="logoutBtn">
+                                <i class="fas fa-sign-out-alt"></i> Logout
+                            </button>
+                        </div>
+                    </div>
+                    <p class="app-subtitle">Stay organized, stay productive</p>
+                </header>
+
+                <!-- Add Task Section -->
                 <div class="top-container">
-                    
-                    <!-- input section  -->
                     <div class="task-input-wrapper">
                         <label for="todo-input" class="task-label">
                             <i class="fas fa-pencil-alt"></i> Task :
                         </label>
-                        <input  name="todo-input"  id="todo-input"  type="text" 
-                            placeholder="Enter Your Task"  minlength="5" maxlength="100" class="task-input-field rounded"/>
+                        <input id="todo-input" type="text" 
+                               placeholder="Enter Your Task" minlength="5" maxlength="100" 
+                               class="task-input-field" />
                         
-                        <!-- add and clear btn -->
-                        <button class="btn btn-success btn-add" id="addTask-btn"> <i class="fas fa-plus me-2"></i>Add Task </button>
-                        <button class="btn btn-dark btn-clear" id="clear-btn"><i class="fas fa-times"></i></button>
+                        <button class="btn-add" id="addTask-btn"> 
+                            <i class="fas fa-plus me-2"></i>Add Task 
+                        </button>
+                        <button class="btn-clear" id="clear-btn">
+                            <i class="fas fa-times"></i>
+                        </button>
                     </div>
+                </div>
 
+                <!-- Active Tasks -->
+                <div class="container mt-4">
+                    <div class="row display-container gap-1 justify-content-center">
+                        <!-- Tasks rendered by script -->
+                    </div>
                 </div>
-            
 
-            <!-- Active Tasks -->
-            <div class="container mt-4">
-                
-                <div class="row display-container gap-1 justify-content-center">
-                    <!-- Tasks rendered by script -->
+                <!-- Deleted Tasks -->
+                <div class="container mt-5 deleted-section">
+                    <div class="section-header">
+                        <h2 class="section-title text-light">
+                            <i class="fas fa-trash-alt text-danger me-2"></i>
+                            Deleted Tasks
+                        </h2>
+                    </div>
+                    <div class="row delected-task gap-1 justify-content-center p-2">
+                        <!-- Deleted tasks rendered by script -->
+                    </div>
                 </div>
-            </div>
 
-            <!-- Deleted Tasks -->
-            <div class="container mt-5 deleted-section">
-                <div class="section-header">
-                    <h2 class="section-title text-light">
-                        <i class="fas fa-trash-alt text-danger me-2"></i>
-                        Deleted Tasks
-                    </h2>
+                <!-- Edit Modal -->
+                <div class="modal fade" id="editModal" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header border-0">
+                                <h5 class="modal-title">
+                                    <i class="fas fa-edit text-primary me-2"></i>
+                                    Edit Task
+                                </h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="mb-3">
+                                    <label for="edit-text" class="form-label fw-semibold">
+                                        <i class="fas fa-pen me-2"></i>Update task :
+                                    </label>
+                                    <input id="edit-text" type="text" 
+                                           minlength="5" maxlength="100"
+                                           class="form-control form-control-lg" />
+                                </div>
+                            </div>
+                            <div class="modal-footer border-0">
+                                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+                                <button class="btn btn-success editModal-btn">
+                                    <i class="fas fa-save me-2"></i>Save Changes
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="row delected-task gap-1 justify-content-center p-2">
-                    <!-- Deleted tasks rendered by script -->
-                </div>
-            </div>
-
-           <!-- Edit Modal - Using Bootstrap's modal system -->
-<div class="modal fade" id="editModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header border-0">
-                <h5 class="modal-title">
-                    <i class="fas fa-edit text-primary me-2"></i>
-                    Edit the task
-                </h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-            </div>
-            <div class="modal-body">
-                <div class="mb-3">
-                    <label for="edit-text" class="form-label fw-semibold">
-                        <i class="fas fa-pen me-2"></i>Update task :
-                    </label>
-                    <input 
-                        name="edit-text" 
-                        id="edit-text" 
-                        type="text" 
-                        minlength="5" 
-                        maxlength="100"
-                        class="form-control form-control-lg"
-                    />
-                </div>
-            </div>
-            <div class="modal-footer border-0">
-                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
-                <button class="btn btn-success editModal-btn">
-                    <i class="fas fa-save me-2"></i>Edit
-                </button>
             </div>
         </div>
     </div>
-</div>
-        </div>
-    </div>
 
-    <!-- jQuery (load first) -->
+    <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     
-    <!-- Bootstrap JS (load after jQuery) -->
+    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   
     <script type="module" src="./script/script.js"></script>

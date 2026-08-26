@@ -1,0 +1,315 @@
+/* ===== LANDING PAGE STYLES ===== */
+#landingPage {
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    animation: fadeIn 0.8s ease;
+}
+
+.landing-content {
+    padding: 40px 0;
+}
+
+.landing-title {
+    font-size: 4rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--primary-color), #764ba2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 10px;
+}
+
+.landing-subtitle {
+    font-size: 1.3rem;
+    color: #6C7A89;
+    margin-top: 10px;
+}
+
+/* Features */
+.landing-features {
+    margin-top: 40px;
+}
+
+.feature-card {
+    background: white;
+    padding: 30px 20px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--card-shadow);
+    transition: var(--transition);
+    text-align: center;
+    height: 100%;
+    border: 1px solid rgba(108, 99, 255, 0.1);
+}
+
+.feature-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--card-hover-shadow);
+    border-color: var(--primary-color);
+}
+
+.feature-card i {
+    font-size: 2.8rem;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    transition: var(--transition);
+}
+
+.feature-card:hover i {
+    transform: scale(1.1);
+}
+
+.feature-card h5 {
+    font-weight: 600;
+    color: var(--dark-color);
+    margin-bottom: 10px;
+}
+
+.feature-card p {
+    color: #6C7A89;
+    font-size: 0.95rem;
+    margin-bottom: 0;
+}
+
+/* Landing Buttons */
+.landing-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 40px;
+}
+
+.landing-btn {
+    padding: 14px 40px;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: var(--transition);
+    font-size: 1.1rem;
+    border: 2px solid transparent;
+}
+
+.landing-btn-primary {
+    background: linear-gradient(135deg, var(--primary-color), #764ba2);
+    color: white;
+    border: none;
+    box-shadow: 0 4px 15px rgba(108, 99, 255, 0.3);
+}
+
+.landing-btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(108, 99, 255, 0.4);
+}
+
+.landing-btn-outline {
+    background: transparent;
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.landing-btn-outline:hover {
+    background: var(--primary-color);
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(108, 99, 255, 0.3);
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* ===== AUTH PAGE STYLES ===== */
+#authPage {
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    animation: fadeIn 0.5s ease;
+}
+
+.auth-card {
+    background: white;
+    padding: 45px 40px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--card-shadow);
+    border: 1px solid rgba(108, 99, 255, 0.1);
+}
+
+.auth-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.auth-icon {
+    font-size: 4rem;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    background: rgba(108, 99, 255, 0.1);
+    padding: 15px;
+    border-radius: 50%;
+}
+
+.auth-header h2 {
+    font-weight: 700;
+    color: var(--dark-color);
+}
+
+.auth-header p {
+    color: #6C7A89;
+}
+
+#authForm .form-control {
+    border-radius: 12px;
+    border: 2px solid #E8ECF1;
+    padding: 12px 18px;
+    transition: var(--transition);
+}
+
+#authForm .form-control:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 4px rgba(108, 99, 255, 0.1);
+}
+
+#authForm .form-label {
+    color: var(--dark-color);
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+#authForm .btn-primary {
+    border-radius: 12px;
+    padding: 14px;
+    font-weight: 600;
+    background: linear-gradient(135deg, var(--primary-color), #764ba2);
+    border: none;
+    transition: var(--transition);
+}
+
+#authForm .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(108, 99, 255, 0.3);
+}
+
+#toggleAuth {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+#toggleAuth:hover {
+    text-decoration: underline;
+}
+
+#passwordHint {
+    font-size: 0.8rem;
+}
+
+#authError {
+    border-radius: 10px;
+    padding: 12px;
+    margin-bottom: 15px;
+}
+
+/* ===== APP PAGE STYLES ===== */
+#appPage {
+    animation: fadeIn 0.5s ease;
+}
+
+.app-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 5px;
+}
+
+.app-subtitle {
+    color: #6C7A89;
+}
+
+#userDisplay {
+    font-weight: 500;
+}
+
+#currentUsername {
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+#logoutBtn {
+    border-radius: 25px;
+    padding: 8px 20px;
+    transition: var(--transition);
+}
+
+#logoutBtn:hover {
+    transform: scale(1.05);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 992px) {
+    .landing-title {
+        font-size: 3rem;
+    }
+    
+    .auth-card {
+        padding: 30px 25px;
+    }
+}
+
+@media (max-width: 768px) {
+    .landing-title {
+        font-size: 2.5rem;
+    }
+    
+    .landing-subtitle {
+        font-size: 1.1rem;
+    }
+    
+    .landing-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .landing-btn {
+        width: 100%;
+        max-width: 300px;
+    }
+    
+    .feature-card {
+        padding: 20px 15px;
+    }
+    
+    .auth-card {
+        padding: 25px 20px;
+    }
+}
+
+@media (max-width: 576px) {
+    .landing-title {
+        font-size: 2rem;
+    }
+    
+    .landing-icon {
+        font-size: 3.5rem;
+    }
+    
+    .app-title {
+        font-size: 1.8rem;
+    }
+}

@@ -1,249 +1,275 @@
+import { Task } from './services/task.js'
+import { checkAuth, showLandingPage } from './auth.js'
 
-import {baseUrl} from './shared/shared.js' 
-import {Task} from './services/task.js'
+let taskObject = null
 
-    // the object of the task class 
-    const taskObject =  new Task(baseUrl)
+// ==================== INITIALIZATION ====================
 
-    //on click on the add task it calls the add task 
-    $("#addTask-btn").on('click',function(){
-        addTask()
-    })  
+// Initialize the app
+document.addEventListener('DOMContentLoaded', function() {
+    const isLoggedIn = checkAuth()
+    if (isLoggedIn) {
+        taskObject = new Task()
+        display()
+        delectedCardsDisplay()
+    }
+})
 
-    // on click on the clear it calls the clear function 
-    $("#clear-btn").on('click',function(){
+// Listen for login events
+document.addEventListener('userLoggedIn', function(e) {
+    taskObject = new Task()
+    display()
+    delectedCardsDisplay()
+})
+
+// Listen for logout events
+document.addEventListener('userLoggedOut', function() {
+    taskObject = null
+    const container = document.querySelector(".display-container")
+    if (container) container.innerHTML = ''
+    const deletedContainer = document.querySelector(".delected-task")
+    if (deletedContainer) deletedContainer.innerHTML = ''
+})
+
+// ==================== TASK FUNCTIONS ====================
+
+// Add task
+document.getElementById("addTask-btn").addEventListener('click', function() {
+    if (!taskObject) {
+        alert('Please login first')
+        return
+    }
+    addTask()
+})
+
+// Clear input
+document.getElementById("clear-btn").addEventListener('click', clear)
+
+async function addTask() {
+    try {
+        if (!taskObject) {
+            throw new Error('Task service not initialized. Please login again.')
+        }
+        const CardDetails = cardData()
+        await taskObject.postTask(CardDetails)
+        await display()
         clear()
-    })
-
-    // function to create a new task and then post in the db
-    async function addTask() 
-    { 
-        try
-        {
-            //cardData function give the data object that have the task name , isdelected and date of creation 
-            const CardDetails = cardData()
-
-            // calls the function to post the task 
-            await taskObject.postTask(CardDetails)
-
-            // DISPLAY function is called so the post element can be showed 
-            display()
-            
-            //after the elemnt is posted the task name is been cleared 
-            clear()
-
-        }
-        catch(err) { alert(err) }
+    } catch (err) {
+        alert(err.message)
     }
+}
 
-    // clear function used to clear the input form 
-    function clear()
-    {
-        $("#todo-input").val('')
-    }
+function clear() {
+    document.getElementById("todo-input").value = ''
+}
 
-    // this function is used to create a object that is been posted when a task is created 
-    function cardData()
-    {
-        let inputValue = $("#todo-input").val()
+function cardData() {
+    let inputValue = document.getElementById("todo-input").value
 
-        if (inputValue.trim() != '')
-        {
-            // object that will be posted 
-            let taskDetails = { taskName : inputValue ,
-                                isDeleted : false,
-                                dateOfCreation : new Date() }
-
-            return taskDetails
+    if (inputValue.trim() != '') {
+        let taskDetails = {
+            taskName: inputValue,
+            isDeleted: false,
+            dateOfCreation: new Date()
         }
-        
-        else
-        {
-            throw new Error ('the input is empty')
-        }
-        
+        return taskDetails
+    } else {
+        throw new Error('The input is empty')
     }
+}
 
-    // when a delete button is clicked
-    $(document).on('click','.delete-btn',async function()
-    {
-        //the id of specific task is been stored 
-        const deleteId = $(this).data('id')
-        
-        const deleteBody = { isDeleted: true }
+// Delete task
+document.addEventListener('click', async function(e) {
+    if (e.target.classList.contains('delete-btn')) {
+        if (!taskObject) {
+            alert('Please login first')
+            return
+        }
+        const deleteId = e.target.dataset.id
+        const deleteBody = { isDeleted: true, updatedDate: new Date() }
 
-        //function for edit is called
-        await taskObject.edit(deleteId ,deleteBody)
+        try {
+            await taskObject.edit(deleteId, deleteBody)
+            await display()
+            await delectedCardsDisplay()
+        } catch (err) {
+            alert(err.message)
+        }
+    }
+})
 
-        //the functionality to refersh and show the currect cards and the show deleted cards 
-        display()
-        delectedCardsDisplay()
-    })
+// Display active tasks
+async function display() {
+    try {
+        if (!taskObject) {
+            console.warn('Task service not initialized')
+            return
+        }
+        const displayTask = await taskObject.displayCards(false)
+        const container = document.querySelector(".display-container")
+        if (!container) return
+        container.innerHTML = ''
 
-    //function used to display all the task 
-    async function display() 
-    {
-        try
-        {
-            // call the get function and store the values
-            const displayTask = await taskObject.displayCards(false)
+        if (displayTask.length === 0) {
+            container.innerHTML = '<div class="text-center text-muted py-4 w-100">✨ No tasks yet. Add one above!</div>'
+            return
+        }
 
-            $(".display-container").empty()
-            
-            //add the task in the task card and have a structure 
-            displayTask.forEach(task => 
-            {
-           
-                const cardStruc = `<div class="col-5 card p-3 mx-2 my-2  rounded-5">
-                                        <div class="card-body">
-                                            <h6 class="card-title">${task.taskName}</h6>
-                                            <p> 📅 created date : ${new Date(task.dateOfCreation).toLocaleDateString()} </p>
-                                            <div class="btnGroup">
-                                                <button class="btn btn-warning edit-btn" data-id="${task.id}">Edit</button>
-                                                <button class="btn btn-danger delete-btn" data-id="${task.id}">Delete</button>
-                                            </div>
+        displayTask.forEach(task => {
+            const cardStruc = `<div class="col-5 card p-3 mx-2 my-2 rounded-5">
+                                    <div class="card-body">
+                                        <h6 class="card-title">${task.taskName}</h6>
+                                        <p> 📅 created : ${new Date(task.dateOfCreation).toLocaleDateString()}</p>
+                                        <div class="btnGroup">
+                                            <button class="btn btn-warning edit-btn" data-id="${task.id}">Edit</button>
+                                            <button class="btn btn-danger delete-btn" data-id="${task.id}">Delete</button>
                                         </div>
-                                    </div>`
-
-                $(".display-container").prepend (cardStruc)
-            
-            });
-        }
-        catch(err) { alert(err) }
-       
+                                    </div>
+                                </div>`
+            container.insertAdjacentHTML('afterbegin', cardStruc)
+        })
+    } catch (err) {
+        console.error('Display error:', err)
+        alert('Failed to display tasks: ' + err.message)
     }
+}
 
-    //function used to display all the task in delete
-    async function delectedCardsDisplay() 
-    {
-        try
-        {
-            // call the get function and store the values of the deleted task
-            const displayTask = await taskObject.displayCards(true)
+// Display deleted tasks
+async function delectedCardsDisplay() {
+    try {
+        if (!taskObject) {
+            console.warn('Task service not initialized')
+            return
+        }
+        const displayTask = await taskObject.displayCards(true)
+        const container = document.querySelector(".delected-task")
+        if (!container) return
+        container.innerHTML = ''
 
-            $(".delected-task").empty()
+        if (displayTask.length === 0) {
+            container.innerHTML = '<div class="text-center text-muted py-4 w-100">🗑️ No deleted tasks</div>'
+            return
+        }
 
-            //add the task in the task card and have a structure 
-            displayTask.forEach(task => 
-            {
-           
-                const cardStruc = `<div class="col-5 card p-3 mx-2 my-2  text-light rounded-5">
-                                        <div class="card-body">
-                                            <h6 class="card-title">${task.taskName}</h6>
-                                            <div class="btnGroup">
-                                                <button class="btn btn-light restore-btn" data-id="${task.id}">Restore</button>
-                                            </div>
+        displayTask.forEach(task => {
+            const cardStruc = `<div class="col-5 card p-3 mx-2 my-2 text-light rounded-5">
+                                    <div class="card-body">
+                                        <h6 class="card-title">${task.taskName}</h6>
+                                        <div class="btnGroup">
+                                            <button class="btn btn-light restore-btn" data-id="${task.id}">Restore</button>
                                         </div>
-                                    </div>`
-
-                $(".delected-task").prepend (cardStruc)
-            
-            });
-        }
-        catch(err) { alert(err) }
+                                    </div>
+                                </div>`
+            container.insertAdjacentHTML('afterbegin', cardStruc)
+        })
+    } catch (err) {
+        console.error('Deleted display error:', err)
+        alert('Failed to display deleted tasks: ' + err.message)
     }
+}
 
-    // when a restore button is clicked
-    $(document).on('click','.restore-btn',async function()
-    {
-        //the id of specific task is been stored 
-        const restoreId = $(this).data('id')
-        
-        const restoreBody = { isDeleted: false}
+// Restore task
+document.addEventListener('click', async function(e) {
+    if (e.target.classList.contains('restore-btn')) {
+        if (!taskObject) {
+            alert('Please login first')
+            return
+        }
+        const restoreId = e.target.dataset.id
+        const restoreBody = { isDeleted: false, updatedDate: new Date() }
 
-        //function for edit is called
-        await taskObject.edit(restoreId , restoreBody)
+        try {
+            await taskObject.edit(restoreId, restoreBody)
+            await display()
+            await delectedCardsDisplay()
+        } catch (err) {
+            alert(err.message)
+        }
+    }
+})
 
-        //the functionality to refersh and show the currect cards and the show deleted cards 
-        display()
-        delectedCardsDisplay()
-    })
+// Edit - open modal
+let editId
+let originalTaskName = ""
 
-    // made the edit id as global so can be used when needed 
-    let editId
-
-    // when a restore button is clicked
-    $(document).on('click','.edit-btn',function()
-    {
-        //the id of specific task is been stored 
-        editId = $(this).data('id')
-        //the edit function is called
+document.addEventListener('click', function(e) {
+    if (e.target.classList.contains('edit-btn')) {
+        if (!taskObject) {
+            alert('Please login first')
+            return
+        }
+        editId = e.target.dataset.id
         Edit(editId)
-    })
+    }
+})
 
-    // when a edit button on the modal is clicked button is clicked
-    $(document).on('click', '.editModal-btn', async function()
-    {
-        try
-        {
-            const editedTaskName = $("#edit-text").val().trim();
+// Edit - save
+const editModalBtn = document.querySelector('.editModal-btn')
+if (editModalBtn) {
+    editModalBtn.addEventListener('click', async function() {
+        try {
+            if (!taskObject) {
+                alert('Please login first')
+                return
+            }
+            const editedTaskName = document.getElementById("edit-text").value.trim()
 
-            if(editedTaskName === "")
-            {
-                alert("Task name cannot be empty");
-                return;
+            if (editedTaskName === "") {
+                alert("Task name cannot be empty")
+                return
             }
 
-            if(editedTaskName.length < 5)
-            {
-                alert("Task name must contain at least 5 characters");
-                return;
+            if (editedTaskName.length < 5) {
+                alert("Task name must contain at least 5 characters")
+                return
             }
 
-            if(originalTaskName === editedTaskName)
-            {
-                alert("Please edit the task name");
-                return;
+            if (originalTaskName === editedTaskName) {
+                alert("Please edit the task name")
+                return
             }
 
             const bodyContent = {
                 taskName: editedTaskName,
                 updatedDate: new Date()
-            };
-
-            await taskObject.edit(editId, bodyContent);
-
-            const modalElement = document.getElementById('editModal');
-            const modal = bootstrap.Modal.getInstance(modalElement);
-
-            modal.hide();
-
-            display();
-        }
-        catch(err)
-        {
-            alert(err);
-        }
-    });
-
-   let originalTaskName = ""
-
-    async function Edit(editId)
-        {
-            try
-            {
-                //get the data of the particular task card clicked 
-                const edit = await taskObject.displayCardsid(false,editId)
-
-                //the particular task name is extracted 
-                 originalTaskName =  edit[0].taskName
-
-                //the task name extracted is been filled in the edit modal 
-                $("#edit-text").val(originalTaskName)
-
-                //display the edit modal 
-                const modalElement = document.getElementById("editModal");
-                const modal = bootstrap.Modal.getOrCreateInstance(modalElement);
-                modal.show();
-
-
-                // return the task name do it can be checked in the time of posting
-                return originalTaskName
             }
-            catch(ERR) { alert(ERR) }
-                
-        }
 
-    // display when its the not doing any functionality 
-    display()
-    delectedCardsDisplay() 
+            await taskObject.edit(editId, bodyContent)
+
+            const modalElement = document.getElementById('editModal')
+            if (modalElement) {
+                const modal = bootstrap.Modal.getInstance(modalElement)
+                if (modal) {
+                    modal.hide()
+                }
+            }
+
+            await display()
+        } catch (err) {
+            alert(err.message)
+        }
+    })
+}
+
+async function Edit(editId) {
+    try {
+        if (!taskObject) {
+            throw new Error('Task service not initialized')
+        }
+        const edit = await taskObject.displayCardsid(false, editId)
+        if (edit && edit.length > 0) {
+            originalTaskName = edit[0].taskName
+            document.getElementById("edit-text").value = originalTaskName
+
+            const modalElement = document.getElementById("editModal")
+            if (modalElement) {
+                const modal = bootstrap.Modal.getOrCreateInstance(modalElement)
+                modal.show()
+            }
+        } else {
+            throw new Error('Task not found')
+        }
+    } catch (ERR) {
+        alert(ERR.message)
+    }
+}

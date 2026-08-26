@@ -34,29 +34,34 @@ body {
     max-width: 1200px;
     margin: 0 auto;
     background: rgba(255, 255, 255, 0.95);
-    /* backdrop-filter: blur(20px); */
+    backdrop-filter: blur(20px);
     border-radius: 24px;
     padding: 30px 40px;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
     border: 1px solid rgba(255, 255, 255, 0.2);
+    min-height: 90vh;
 }
 
-/* ===== Header ===== */
-.app-title {
-    margin-bottom: 5px;
+/* ===== APP PAGE - Task Input ===== */
+.top-container {
+    background: white;
+    border-radius: var(--border-radius);
+    padding: 25px;
+    margin: 20px 0;
+    box-shadow: var(--card-shadow);
 }
-
-.app-subtitle {
-    color: #6C7A89;
-}
-
-/* ===== Top Container - Task Input ===== */
 
 .task-input-wrapper {
     display: flex;
     align-items: center;
     gap: 12px;
-    
+    flex-wrap: wrap;
+}
+
+.task-label {
+    font-weight: 600;
+    color: var(--dark-color);
+    white-space: nowrap;
 }
 
 .task-input-field {
@@ -64,28 +69,51 @@ body {
     min-width: 200px;
     padding: 12px 20px;
     border: 2px solid #E8ECF1;
+    border-radius: 12px;
+    transition: var(--transition);
 }
 
 .task-input-field:focus {
     border-color: var(--primary-color);
+    box-shadow: 0 0 0 4px rgba(108, 99, 255, 0.1);
+    outline: none;
 }
 
 /* ===== Buttons ===== */
-.btn-add:hover,.btn-clear:hover 
- {
-    transform: translateY(-4px);
+.btn-add {
+    background: linear-gradient(135deg, var(--success-color), #27AE60);
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 12px;
+    font-weight: 600;
+    transition: var(--transition);
 }
 
+.btn-add:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(46, 204, 113, 0.3);
+}
+
+.btn-clear {
+    background: var(--dark-color);
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 12px;
+    transition: var(--transition);
+}
+
+.btn-clear:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(44, 62, 80, 0.3);
+}
 
 /* ===== Section Headers ===== */
-
 .section-title {
     font-size: 1.3rem;
-}
-
-/* ===== Display Container ===== */
-.display-container {
-    padding: 5px 0;
+    font-weight: 700;
+    margin-bottom: 15px;
 }
 
 /* ===== Task Cards ===== */
@@ -94,6 +122,7 @@ body {
     box-shadow: var(--card-shadow);
     overflow: hidden;
     animation: slideIn 0.3s ease-out;
+    border: 1px solid rgba(108, 99, 255, 0.1);
 }
 
 .card:hover {
@@ -115,7 +144,6 @@ body {
     margin: 0;
     word-break: break-word;
 }
-
 
 .btnGroup {
     display: flex;
@@ -184,7 +212,6 @@ body {
 
 .deleted-section .card {
     background: rgba(255, 255, 255, 0.05) !important;
-    /* backdrop-filter: blur(10px); */
     border: 1px solid rgba(255, 255, 255, 0.1) !important;
 }
 
@@ -197,7 +224,7 @@ body {
 }
 
 .deleted-section .card p::before {
-    content: "🗑️";
+    content: "🗑️ ";
 }
 
 .deleted-section .btn-light {
@@ -259,7 +286,47 @@ body {
     }
 }
 
-/* ===== Responsive Design ===== */
+/* ===== Scrollbar Styling ===== */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #F1F1F1;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-dark);
+}
+
+/* ===== Empty State ===== */
+.display-container:empty::after {
+    content: "✨ No tasks yet. Add one above!";
+    display: block;
+    text-align: center;
+    padding: 30px;
+    color: #95A5A6;
+    font-size: 1.1rem;
+    width: 100%;
+}
+
+.delected-task:empty::after {
+    content: "🗑️ No deleted tasks";
+    display: block;
+    text-align: center;
+    padding: 20px;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 1rem;
+    width: 100%;
+}
+
+/* ===== RESPONSIVE ===== */
 @media (max-width: 992px) {
     .app-wrapper {
         padding: 20px;
@@ -286,8 +353,6 @@ body {
     
     .top-container {
         padding: 15px;
-        flex-direction: column;
-        align-items: stretch;
     }
     
     .task-input-wrapper {
@@ -306,16 +371,9 @@ body {
         font-size: 0.95rem;
     }
     
-    .btn-add {
+    .btn-add, .btn-clear {
         width: 100%;
         justify-content: center;
-        padding: 10px 20px;
-    }
-    
-    .btn-clear {
-        width: 100%;
-        justify-content: center;
-        padding: 10px 20px;
     }
     
     .card-body {
@@ -345,10 +403,6 @@ body {
         font-size: 1.4rem;
     }
     
-    .header-icon {
-        font-size: 2.5rem;
-    }
-    
     .app-subtitle {
         font-size: 0.85rem;
     }
@@ -362,44 +416,4 @@ body {
     .modal-dialog {
         margin: 10px;
     }
-}
-
-/* ===== Scrollbar Styling ===== */
-::-webkit-scrollbar {
-    width: 8px;
-}
-
-::-webkit-scrollbar-track {
-    background: #F1F1F1;
-    border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb {
-    background: var(--primary-color);
-    border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: var(--primary-dark);
-}
-
-/* ===== Empty State for Cards ===== */
-.display-container:empty::after {
-    content: "✨ No tasks yet. Add one above!";
-    display: block;
-    text-align: center;
-    padding: 30px;
-    color: #95A5A6;
-    font-size: 1.1rem;
-    width: 100%;
-}
-
-.delected-task:empty::after {
-    content: "🗑️ No deleted tasks";
-    display: block;
-    text-align: center;
-    padding: 20px;
-    color: rgba(255, 255, 255, 0.5);
-    font-size: 1rem;
-    width: 100%;
 }

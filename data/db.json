@@ -45,6 +45,83 @@
       "dateOfCreation": "2026-08-25T10:53:33.835Z",
       "id": "fNSLq0l5x4g",
       "updatedDate": "2026-08-25T12:04:24.002Z"
+    },
+    {
+      "taskName": "drink water",
+      "isDeleted": false,
+      "dateOfCreation": "2026-08-26T05:41:27.507Z",
+      "userId": "g32duA6riPo",
+      "id": "py1xpvTLg8w"
+    },
+    {
+      "taskName": "climb the hill ",
+      "isDeleted": false,
+      "dateOfCreation": "2026-08-26T05:41:40.532Z",
+      "userId": "g32duA6riPo",
+      "id": "HDwSol-7gqw",
+      "updatedDate": "2026-08-26T05:42:06.244Z"
+    },
+    {
+      "taskName": "have more skin care",
+      "isDeleted": false,
+      "dateOfCreation": "2026-08-26T05:41:49.595Z",
+      "userId": "g32duA6riPo",
+      "id": "Aq8n9ENsWis"
+    },
+    {
+      "taskName": "drink water",
+      "isDeleted": false,
+      "dateOfCreation": "2026-08-26T05:52:47.571Z",
+      "userId": "LtmT_5djhYk",
+      "id": "-9zTNoYA1f0",
+      "updatedDate": "2026-08-26T05:57:44.188Z"
+    },
+    {
+      "taskName": "climb the hill ",
+      "isDeleted": false,
+      "dateOfCreation": "2026-08-26T05:53:30.212Z",
+      "userId": "LtmT_5djhYk",
+      "id": "L7wV0jOS2Do",
+      "updatedDate": "2026-08-26T05:57:44.997Z"
+    },
+    {
+      "taskName": "read book ",
+      "isDeleted": false,
+      "dateOfCreation": "2026-08-26T05:57:15.699Z",
+      "userId": "LtmT_5djhYk",
+      "id": "67KLXhWr5gs",
+      "updatedDate": "2026-08-26T05:57:42.388Z"
+    },
+    {
+      "taskName": "eat health ",
+      "isDeleted": false,
+      "dateOfCreation": "2026-08-26T05:57:24.029Z",
+      "userId": "LtmT_5djhYk",
+      "id": "bTy2kfgtHus"
+    },
+    {
+      "taskName": "do skin care",
+      "isDeleted": true,
+      "dateOfCreation": "2026-08-26T05:57:35.725Z",
+      "userId": "LtmT_5djhYk",
+      "id": "cOS45yFALXE",
+      "updatedDate": "2026-08-26T05:57:53.108Z"
+    }
+  ],
+  "users": [
+    {
+      "username": "monisah",
+      "email": "monisha@gmail.com",
+      "password": "51fbe50e1411cc541e975cb97e3026f7d0cf8d76698af165fa87ae2b539bb720",
+      "createdAt": "2026-08-26T05:38:40.673Z",
+      "id": "LtmT_5djhYk"
+    },
+    {
+      "username": "monisha",
+      "email": "monishar@gmail.com",
+      "password": "c8c7fbd447472e2413e2c05c024c23e32558f0a724f039c7340563cd83754e93",
+      "createdAt": "2026-08-26T05:39:23.935Z",
+      "id": "g32duA6riPo"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
